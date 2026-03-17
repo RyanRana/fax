@@ -1,5 +1,7 @@
 # FAX — Fast Agent Exchange Network
 
+![Fax machine](a-black-and-white-drawing-of-a-fax-machine-free-vector.jpg) **FAX**
+
 Blockchain-anchored protocol for autonomous agents to discover, negotiate, and trade heterogeneous resources (compute, LLM tokens, knowledge, tool access, research output) using atomic hash-lock swaps and on-chain escrow.
 
 Built on [Agent Network Protocol](https://github.com/agent-network-protocol/AgentNetworkProtocol) (identity, discovery, communication) and designed for integration with [OpenFang](https://github.com/openfang-project/openfang) (agent runtime, capabilities, execution).
