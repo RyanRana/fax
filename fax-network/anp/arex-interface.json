@@ -1,0 +1,212 @@
+{
+  "fax/anp": "1.0.0",
+  "description": "FAX Resource Trading Protocol — agent-to-agent resource exchange over ANP",
+  "protocolUri": "https://fax-network.org/protocol/1.0",
+
+  "roles": {
+    "provider": {
+      "description": "Agent offering resources for trade",
+      "endpoints": {
+        "list_resources": {
+          "path": "/fax/provider/resources",
+          "method": "GET",
+          "description": "List available tradable resources and exchange rates",
+          "response": { "$ref": "#/schemas/ResourceProfileResponse" }
+        },
+        "receive_offer": {
+          "path": "/fax/provider/offer",
+          "method": "POST",
+          "description": "Receive a trade offer from a consumer",
+          "body": { "$ref": "#/schemas/TradeOffer" },
+          "response": { "$ref": "#/schemas/TradeResponse" }
+        },
+        "receive_lock": {
+          "path": "/fax/provider/lock",
+          "method": "POST",
+          "description": "Receive a resource lock credential from the counterparty",
+          "body": { "$ref": "#/schemas/ResourceLockMessage" }
+        },
+        "receive_delivery": {
+          "path": "/fax/provider/delivery",
+          "method": "POST",
+          "description": "Receive a delivery confirmation (secret reveal) from the counterparty",
+          "body": { "$ref": "#/schemas/DeliveryMessage" }
+        }
+      }
+    },
+    "consumer": {
+      "description": "Agent seeking to acquire resources via trade",
+      "endpoints": {
+        "receive_counter_offer": {
+          "path": "/fax/consumer/counter",
+          "method": "POST",
+          "description": "Receive a counter-offer from the provider",
+          "body": { "$ref": "#/schemas/TradeOffer" }
+        },
+        "receive_agreement": {
+          "path": "/fax/consumer/agreement",
+          "method": "POST",
+          "description": "Receive the signed swap agreement",
+          "body": { "$ref": "#/schemas/SwapAgreementMessage" }
+        },
+        "receive_lock": {
+          "path": "/fax/consumer/lock",
+          "method": "POST",
+          "body": { "$ref": "#/schemas/ResourceLockMessage" }
+        },
+        "receive_delivery": {
+          "path": "/fax/consumer/delivery",
+          "method": "POST",
+          "body": { "$ref": "#/schemas/DeliveryMessage" }
+        },
+        "receive_anchor": {
+          "path": "/fax/consumer/anchor",
+          "method": "POST",
+          "description": "Receive the L2 anchor receipt",
+          "body": { "$ref": "#/schemas/AnchorReceiptMessage" }
+        }
+      }
+    }
+  },
+
+  "websocket": {
+    "description": "Real-time trading channel using ANP WebSocket (meta-protocol PT=01)",
+    "url": "wss://{domain}/fax/ws",
+    "messageTypes": [
+      "ResourceAdvertisement",
+      "TradeProposal",
+      "TradeCounter",
+      "TradeAccept",
+      "TradeReject",
+      "ResourceLock",
+      "ResourceDelivery",
+      "TradeComplete",
+      "AnchorReceipt",
+      "Dispute",
+      "Ping",
+      "Pong"
+    ]
+  },
+
+  "schemas": {
+    "ResourceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "agentDid": { "type": "string" },
+        "offeredResources": {
+          "type": "array",
+          "items": { "$ref": "#/schemas/TradableResource" }
+        },
+        "acceptedResourceTypes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "exchangeRates": {
+          "type": "array",
+          "items": { "$ref": "#/schemas/ExchangeRate" }
+        },
+        "tradingPolicy": { "$ref": "#/schemas/TradingPolicy" }
+      }
+    },
+    "TradableResource": {
+      "type": "object",
+      "required": ["resourceType", "amount", "unit"],
+      "properties": {
+        "resourceType": { "type": "string" },
+        "subtype": { "type": "string" },
+        "amount": { "type": "number" },
+        "unit": { "type": "string" },
+        "minTrade": { "type": "number" },
+        "maxTrade": { "type": "number" },
+        "quality": { "type": "object" }
+      }
+    },
+    "ExchangeRate": {
+      "type": "object",
+      "properties": {
+        "give": { "$ref": "#/schemas/ResourceAmount" },
+        "receive": { "$ref": "#/schemas/ResourceAmount" },
+        "rateType": { "type": "string", "enum": ["fixed", "indicative", "negotiable"] },
+        "validUntil": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ResourceAmount": {
+      "type": "object",
+      "properties": {
+        "resourceType": { "type": "string" },
+        "amount": { "type": "number" },
+        "unit": { "type": "string" }
+      }
+    },
+    "TradingPolicy": {
+      "type": "object",
+      "properties": {
+        "minSecurityLevel": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "requiresBlockchainAnchor": { "type": "boolean" },
+        "acceptsCredit": { "type": "boolean" },
+        "maxConcurrentTrades": { "type": "integer" }
+      }
+    },
+    "TradeOffer": {
+      "type": "object",
+      "required": ["credential", "securityProposal"],
+      "properties": {
+        "credential": { "description": "ResourceOfferCredential (W3C VC)" },
+        "securityProposal": {
+          "type": "object",
+          "properties": {
+            "proposedLevel": { "type": "integer" },
+            "acceptableLevels": { "type": "array", "items": { "type": "integer" } },
+            "reputationScore": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "TradeResponse": {
+      "type": "object",
+      "properties": {
+        "action": { "type": "string", "enum": ["accept", "counter", "reject"] },
+        "credential": { "description": "SwapAgreementCredential or CounterOfferCredential" },
+        "reason": { "type": "string" }
+      }
+    },
+    "SwapAgreementMessage": {
+      "type": "object",
+      "required": ["credential"],
+      "properties": {
+        "credential": { "description": "SwapAgreementCredential (W3C VC)" }
+      }
+    },
+    "ResourceLockMessage": {
+      "type": "object",
+      "required": ["credential"],
+      "properties": {
+        "credential": { "description": "ResourceLockCredential with hashLock" }
+      }
+    },
+    "DeliveryMessage": {
+      "type": "object",
+      "required": ["credential"],
+      "properties": {
+        "credential": { "description": "ResourceDeliveryCredential with secretReveal" }
+      }
+    },
+    "AnchorReceiptMessage": {
+      "type": "object",
+      "required": ["credential", "txHash", "blockNumber"],
+      "properties": {
+        "credential": { "description": "AnchorReceiptCredential" },
+        "txHash": { "type": "string" },
+        "blockNumber": { "type": "integer" }
+      }
+    }
+  },
+
+  "security": {
+    "authentication": "DID:WBA with Ed25519 or secp256k1 signatures",
+    "encryption": "HPKE end-to-end encryption for trade messages",
+    "vcSigning": "DataIntegrityProof with eddsa-jcs-2022 cryptosuite",
+    "hashChaining": "SHA-256 previousCredentialHash linking",
+    "blockchainAnchor": "EVM L2 (Arbitrum/Base/Optimism) via FAXAnchor contract"
+  }
+}

@@ -1,0 +1,14 @@
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/serde-566d005c055d5d10.d: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/serde-0448116982b0aa78/out/private.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libserde-566d005c055d5d10.rlib: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/serde-0448116982b0aa78/out/private.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libserde-566d005c055d5d10.rmeta: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/serde-0448116982b0aa78/out/private.rs
+
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/build/serde-0448116982b0aa78/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/ryanrana/Downloads/everything/fax-network/target/debug/build/serde-0448116982b0aa78/out

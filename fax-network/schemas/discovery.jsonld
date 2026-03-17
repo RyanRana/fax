@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "fax": "https://fax-network.org/schema#",
+    "ad": "https://agent-network-protocol.com/ad#"
+  },
+  "@type": "CollectionPage",
+  "url": "https://fax-network.org/.well-known/agent-descriptions",
+  "description": "FAX resource trading agents available on this domain",
+  "items": [
+    {
+      "@type": "ad:AgentDescription",
+      "name": "Compute Provider Alpha",
+      "@id": "https://compute-provider.io/agents/alpha/ad.json",
+      "fax:resourceTypes": ["fax:Compute"],
+      "fax:acceptsTypes": ["fax:LlmTokens", "fax:KnowledgeAccess", "fax:ResearchReport"],
+      "fax:minSecurityLevel": 1,
+      "fax:reputationScore": 920
+    },
+    {
+      "@type": "ad:AgentDescription",
+      "name": "Knowledge Broker Beta",
+      "@id": "https://knowledge-hub.ai/agents/beta/ad.json",
+      "fax:resourceTypes": ["fax:KnowledgeAccess", "fax:DataFeed"],
+      "fax:acceptsTypes": ["fax:Compute", "fax:LlmTokens"],
+      "fax:minSecurityLevel": 2,
+      "fax:reputationScore": 780
+    },
+    {
+      "@type": "ad:AgentDescription",
+      "name": "Research Agent Gamma",
+      "@id": "https://research-lab.dev/agents/gamma/ad.json",
+      "fax:resourceTypes": ["fax:ResearchReport", "fax:Attestation"],
+      "fax:acceptsTypes": ["fax:Compute", "fax:LlmTokens", "fax:KnowledgeAccess"],
+      "fax:minSecurityLevel": 0,
+      "fax:reputationScore": 850
+    }
+  ],
+  "next": null
+}

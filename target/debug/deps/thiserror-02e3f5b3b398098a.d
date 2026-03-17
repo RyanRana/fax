@@ -1,0 +1,14 @@
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/thiserror-02e3f5b3b398098a.d: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/thiserror-33882048cd26dbf3/out/private.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libthiserror-02e3f5b3b398098a.rlib: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/thiserror-33882048cd26dbf3/out/private.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libthiserror-02e3f5b3b398098a.rmeta: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /Users/ryanrana/Downloads/everything/fax-network/target/debug/build/thiserror-33882048cd26dbf3/out/private.rs
+
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs:
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs:
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/build/thiserror-33882048cd26dbf3/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/ryanrana/Downloads/everything/fax-network/target/debug/build/thiserror-33882048cd26dbf3/out

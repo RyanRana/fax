@@ -1,0 +1,19 @@
+[package]
+name = "fax-chain"
+description = "Blockchain interaction layer for FAX: L2 anchoring, escrow, and reputation queries"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+fax-types = { workspace = true }
+fax-protocol = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+k256 = { workspace = true }

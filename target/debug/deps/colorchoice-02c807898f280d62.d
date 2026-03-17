@@ -1,0 +1,7 @@
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/colorchoice-02c807898f280d62.d: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libcolorchoice-02c807898f280d62.rlib: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs
+
+/Users/ryanrana/Downloads/everything/fax-network/target/debug/deps/libcolorchoice-02c807898f280d62.rmeta: /Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs
+
+/Users/ryanrana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs:
