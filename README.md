@@ -24,6 +24,90 @@ Built on [Agent Network Protocol](https://github.com/agent-network-protocol/Agen
 
 **Key principle:** Blockchain as anchor, not bus. Agents communicate off-chain via ANP. Only hashes, escrow state, and reputation go on-chain.
 
+## Get Started
+
+No central server or hosted ANP is required. The network is every agent that speaks FAX and is reachable (by URL or by being registered). Follow these steps to go from zero to trading.
+
+### Prerequisites
+
+- **Rust** (latest stable) — for building the CLI and crates.
+- **Optional:** [Foundry](https://getfoundry.sh) — only if you build or deploy the Solidity contracts.
+- **Optional:** [OpenFang](https://github.com/openfang-project/openfang) — only if you want to run the FAX trader as an OpenFang Hand.
+
+### 1. Build and run the demo
+
+```bash
+git clone <this-repo>
+cd fax
+cargo build
+cargo run --bin fax -- demo
+```
+
+The demo simulates a full trade: Alice trades 2 GPU-hours for 100K LLM tokens from Bob, with hash-lock atomic swap and L2 anchoring. No network or contracts needed — it runs locally to verify the protocol stack.
+
+### 2. Create an agent identity
+
+Generate a DID:WBA identity for your agent. The DID document URL is derived from the DID; you will host it (or expose it for testing) so other agents can resolve your identity and find your trading endpoint.
+
+```bash
+cargo run --bin fax -- identity --domain your-domain.com --name my-agent
+```
+
+Use your real domain if you plan to host; for local testing, a placeholder domain is fine and you can register peers directly (see step 4).
+
+### 3. Use the CLI
+
+```bash
+# RCU conversion rates (GPU-hour, tokens, etc.)
+cargo run --bin fax -- rates
+
+# Simulate reputation scores
+cargo run --bin fax -- reputation --trades 20 --disputes 1
+```
+
+### 4. Connect agents and trade
+
+**Option A — Local / testing (no hosting)**  
+Run two FAX-capable agents (e.g. two OpenFang instances with FAX). In each config, point to the other via `fax.discovery.known_domains` or register the other agent directly in code with `DiscoveryService::register_agent()`. They discover each other and can trade without publishing anything on the public web.
+
+**Option B — Publish and be discovered**  
+1. **Identity** — Host your DID document at the URL derived from your DID; it must include a `FaxTradingEndpoint` service for your trading WebSocket.  
+2. **Discovery** — Publish an [ANP Agent Description](https://github.com/agent-network-protocol/AgentNetworkProtocol) at `https://<your-domain>/.well-known/agent-descriptions` with the FAX interface (`protocol: "FAX"`) and your offered resource types.  
+3. **Trading** — Other agents add your domain to `known_domains` (or crawl that URL), then connect to your endpoint over ANP’s WebSocket (E2EE via HPKE) and run the hash-lock swap flow.
+
+### 5. Optional: Run FAX inside OpenFang
+
+To use the FAX trader as an autonomous Hand with the 9 FAX tools and RCU-based strategy:
+
+1. Add the `[fax]` section from `openfang/config-snippet.toml` to your `~/.openfang/config.toml`.
+2. Apply the code changes in `openfang/integration-patch.md` so the OpenFang runtime has the FAX tools and capabilities.
+3. Run a Hand that uses them (e.g. the `fax-trader` Hand from `openfang/HAND.toml`).
+
+Set `fax.discovery.known_domains` to the domains of other FAX agents, or register agents in code for local testing.
+
+### 6. Optional: Use L2 (anchor, escrow, reputation)
+
+For on-chain anchoring and escrow, deploy the contracts in `contracts/` to an EVM L2 (Arbitrum, Base, Optimism), then set `fax.chain` in your config:
+
+- `anchor_contract`, `escrow_contract`, `reputation_contract` — deployed addresses.
+- `rpc_url`, `chain_id` — L2 RPC and chain ID.
+- `private_key_env` — env var name for the EVM key used for anchoring/escrow.
+
+Without L2, agents can still trade using the VC chain and security level 0 (Trust); higher security levels require the chain.
+
+### Tests
+
+```bash
+cargo test
+# Solidity (requires Foundry)
+cd contracts && forge test -vvv
+```
+
+## How agents get FAX and connect to the network
+
+- **OpenFang agents** — Add the `[fax]` config from `openfang/config-snippet.toml`, apply `openfang/integration-patch.md`, and run a Hand that uses the FAX tools (e.g. `fax-trader`). The `fax-openfang` crate provides the 9 FAX tools and FaxAgent runtime.
+- **Other runtimes** — Use the Rust crates: `fax-types`, `fax-protocol`, `fax-anp`, and optionally `fax-chain`. The `fax-anp` crate handles agent descriptions, discovery, and WebSocket framing; see `anp/` for the protocol interface and message schemas.
+
 ## Components
 
 ### Smart Contracts (`contracts/`)
@@ -68,52 +152,6 @@ JSON-LD schemas extending ANP's Agent Description Protocol:
 - `resource-profile.jsonld` — How agents describe tradable resources
 - `discovery.jsonld` — Resource-aware agent discovery
 - `credentials/` — VC templates for swap agreements, resource locks, etc.
-
-## Quick Start
-
-### Build
-
-```bash
-# Rust
-cargo build
-
-# Solidity (requires Foundry)
-cd contracts && forge build
-```
-
-### Run the Demo
-
-```bash
-cargo run --bin fax -- demo
-```
-
-This simulates a complete trade: Alice trades 2 GPU-hours for 100K LLM tokens from Bob, with hash-lock atomic swap and L2 anchoring.
-
-### CLI Commands
-
-```bash
-# Generate an agent identity
-fax identity --domain compute-provider.io --name alpha
-
-# Show RCU conversion rates
-fax rates
-
-# Run full trade simulation
-fax demo
-
-# Simulate reputation scores
-fax reputation --trades 20 --disputes 1
-```
-
-### Run Tests
-
-```bash
-# Rust tests
-cargo test
-
-# Solidity tests (requires Foundry)
-cd contracts && forge test -vvv
-```
 
 ## Trade Flow
 
