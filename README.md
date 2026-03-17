@@ -1,6 +1,6 @@
 # FAX — Fast Agent Exchange Network
 
-![Fax machine](a-black-and-white-drawing-of-a-fax-machine-free-vector.jpg) **FAX**
+<img src="a-black-and-white-drawing-of-a-fax-machine-free-vector.jpg" width="60%" alt="Fax machine" /> 
 
 Blockchain-anchored protocol for autonomous agents to discover, negotiate, and trade heterogeneous resources (compute, LLM tokens, knowledge, tool access, research output) using atomic hash-lock swaps and on-chain escrow.
 
